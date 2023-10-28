@@ -4,6 +4,7 @@ import Home from "../../pages/Home/Home";
 import Details from "../../pages/Details/Details";
 import Addservices from "../../admin/Addservices";
 import Cart from "../../pages/Cart/Cart/Cart";
+import Signup from "../../pages/Signup/Signup";
 
 const MainRoute = createBrowserRouter([
     {
@@ -28,6 +29,10 @@ const MainRoute = createBrowserRouter([
             {
                 path: '/cart',
                 element: <Cart></Cart>
+            },
+            {
+                path: '/signup',
+                element: <Signup></Signup>
             }
         ]
     }
