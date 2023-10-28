@@ -5,6 +5,7 @@ import Details from "../../pages/Details/Details";
 import Addservices from "../../admin/Addservices";
 import Cart from "../../pages/Cart/Cart/Cart";
 import Signup from "../../pages/Signup/Signup";
+import Login from "../../pages/Login/Login";
 
 const MainRoute = createBrowserRouter([
     {
@@ -33,6 +34,10 @@ const MainRoute = createBrowserRouter([
             {
                 path: '/signup',
                 element: <Signup></Signup>
+            },
+            {
+                path: '/login',
+                element: <Login></Login>
             }
         ]
     }

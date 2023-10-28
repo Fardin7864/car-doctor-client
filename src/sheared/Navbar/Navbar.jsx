@@ -1,7 +1,10 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import logo from '../../assets/icons/logo.svg'
+import { useContext } from "react";
+import { Authcontext } from "../../providers/Authprovider";
 
 const Navbar = () => {
+  const {user, logOut} = useContext(Authcontext)
   const navlink = (
     <>
       <li>
@@ -19,8 +22,12 @@ const Navbar = () => {
       <li>
         <NavLink to='/contact'>Contact</NavLink>
       </li>
+      <li>
+       <p className=" font-semibold text-orange-600">{user?.email?.split('@')[0].toUpperCase() }</p> 
+      </li>
     </>
   );
+  console.log(user?.email)
   return (
     <div className="navbar bg-base-100">
       <div className="navbar-start">
@@ -58,7 +65,9 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end">
-        <a className="btn">Appointment</a>
+        {
+          user? <button onClick={logOut} className=" btn btn-warning">Sign Out</button> : <Link to='/login' className=" btn btn-secondary">Login</Link>
+        }
       </div>
     </div>
   );
