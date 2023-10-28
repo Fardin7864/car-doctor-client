@@ -6,7 +6,7 @@ const Services = () => {
 
     const [services, setServices] = useState();
     useEffect(() => { 
-        axios('/services.json')
+        axios('http://localhost:5000/services')
         .then(data => setServices(data.data))
      }, [])
 
@@ -18,7 +18,7 @@ const Services = () => {
                 <h2 className=" text-5xl font-bold"> Our Service Area</h2>
                 <p className=" text-gray-600">the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. </p>
             </div>
-            <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-11">
+            <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {
                     services?.map(service => 
                     <Service
