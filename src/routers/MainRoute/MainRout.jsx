@@ -3,6 +3,7 @@ import Root from "../../Root";
 import Home from "../../pages/Home/Home";
 import Details from "../../pages/Details/Details";
 import Addservices from "../../admin/Addservices";
+import Cart from "../../pages/Cart/Cart/Cart";
 
 const MainRoute = createBrowserRouter([
     {
@@ -23,6 +24,10 @@ const MainRoute = createBrowserRouter([
             {
                 path: '/add/services',
                 element: <Addservices></Addservices>
+            },
+            {
+                path: '/cart',
+                element: <Cart></Cart>
             }
         ]
     }
