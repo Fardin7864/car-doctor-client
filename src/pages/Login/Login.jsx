@@ -1,14 +1,16 @@
 import { useContext, useState } from 'react';
 import { Authcontext } from '../../providers/Authprovider';
 import SocilalLogin from '../../sheared/SocialLogin/SocilalLogin';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const Login = () => {
     const [formData, setFormData] = useState({
-        username: "",
         email: "",
         password: "",
       });
+      const location = useLocation();
+      const navigate = useNavigate();
       const {loginWithEmail} = useContext(Authcontext)
     
       const handleInputChange = (e) => {
@@ -22,15 +24,22 @@ const Login = () => {
         e.preventDefault();
         loginWithEmail(formData.email, formData.password)
         .then(result => {
-            console.log(result)
-        })
-        .cathch(err => {
-            console.log(err)
-        })
+
+          const user = {email: formData.email}
+          axios.post('http://localhost:5000/jwt', user, {withCredentials: true})
+            .then(res => {
+              console.log(res.data);
+            })
+            .catch(err => {
+              console.log(err);
+            })
+        // navigate(location?.state ? location.state : '/')
+        // e.target.reset();
         // You can add your sign-up logic here, like making an API request.
         // console.log(formData); // Just for demonstration
         
-      };
+      })
+    };
 
     return (
         <div className=" my-11 flex flex-col justify-center items-center">

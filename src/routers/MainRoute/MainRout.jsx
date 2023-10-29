@@ -6,6 +6,7 @@ import Addservices from "../../admin/Addservices";
 import Cart from "../../pages/Cart/Cart/Cart";
 import Signup from "../../pages/Signup/Signup";
 import Login from "../../pages/Login/Login";
+import PrivetRoute from "../Privet/PrivetRoute";
 
 const MainRoute = createBrowserRouter([
     {
@@ -19,7 +20,7 @@ const MainRoute = createBrowserRouter([
             },
             {
                 path: '/details/:id',
-                element: <Details></Details>,
+                element: <PrivetRoute><Details></Details></PrivetRoute>,
                 loader: ({params}) => fetch(`http://localhost:5000/services/${params.id}`)
 
             },
@@ -29,7 +30,7 @@ const MainRoute = createBrowserRouter([
             },
             {
                 path: '/cart',
-                element: <Cart></Cart>
+                element: <PrivetRoute><Cart></Cart></PrivetRoute>
             },
             {
                 path: '/signup',

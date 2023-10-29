@@ -5,6 +5,7 @@ import auth from "../firebase/firebase";
 export const Authcontext = createContext();
 
 const Authprovider = ({children}) => {
+    const [loading, setLoading] = useState(true);
 
     const [user, setUser] = useState();
 
@@ -12,24 +13,30 @@ const Authprovider = ({children}) => {
     const google = new GoogleAuthProvider();
     
     const createUserWithEmail = (email, pass) => { 
+        setLoading(true)
         return createUserWithEmailAndPassword(auth, email, pass)
      }
     
     const socialLogin = () => { 
+        setLoading(true)
          signInWithPopup(auth, google)
      }
 
     const loginWithEmail = (email, pass) => { 
+        setLoading(true)
         return signInWithEmailAndPassword(auth, email, pass)
      }
 
     const logOut = () => { 
+        setLoading(true)
         return signOut(auth)
      }
 
     useEffect(() => { 
         const unsubscribe= onAuthStateChanged(auth, (currentUser) => { 
+            setLoading(true)
             setUser(currentUser);
+            setLoading(false)
          })
 
          return () => { 
@@ -45,7 +52,7 @@ const Authprovider = ({children}) => {
         loginWithEmail,
         logOut,
         user,
-        name: 'fardin'
+        loading,
         
     }
     return <Authcontext.Provider value={authInfo} >{children}</Authcontext.Provider>;
