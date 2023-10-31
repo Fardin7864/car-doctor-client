@@ -14,7 +14,7 @@ const Cart = () => {
     .catch(err => console.log(err))
    },[rander])
    const handleDelete= (id) => { 
-    axios.delete(`http://localhost:5000/cart/${id}`,{withCredentials: true})
+    axios.delete(`http://localhost:5000/cart/${id}`)
     .then(result => {
       console.log(result.data)
       setRander(!rander)
